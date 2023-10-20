@@ -1,38 +1,29 @@
-.App {
-  text-align: center;
+.mainContainer{
+    display:flex;
+    gap: 10px;
+    height: 100vh;
+    width: 100vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mapContainer{
+    width: 60%;
+}
+.offersContainer{
+    width: 40%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+::-webkit-scrollbar {
+  width: 15px;
+  border-radius: 10px;
+  background-color: #F5F5F5; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #83DFFF 0%, #00AFEC 100%)!important;
+  background: -moz-linear-gradient(180deg, #83DFFF 0%, #00AFEC 100%)!important;
+  background: -webkit-linear-gradient(180deg, #83DFFF 0%, #00AFEC 100%)!important;
+  background: -webkit-linear-gradient(180deg, #83DFFF 0%, #00AFEC 100%)!important;
+  background: -o-linear-gradient(180deg, #83DFFF 0%, #00AFEC 100%)!important;
+  background: -ms-linear-gradient(180deg, #83DFFF 0%, #00AFEC 100%)!important;
 }

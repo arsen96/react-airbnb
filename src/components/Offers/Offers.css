@@ -1,0 +1,69 @@
+.hidden {
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.Offers{
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.card{
+    margin-bottom: 10px;
+}
+
+.buttons{
+    display: flex;
+    gap:5px;
+}
+
+.price-search{
+    display: flex;
+    align-items: baseline;
+    padding:1rem;
+}
+
+.btn-price, .btn-city{
+    height: fit-content;
+    margin-left:5px;
+}
+
+.city-search{
+    display: flex;
+}
+
+.col{
+    display:flex;
+    transition: 0.5s;
+}
+.hideItem{
+    opacity:0;
+    transform: scale(0.3) rotate(120deg);
+}
+
+.visibleItem{
+    opacity:1;
+    transition:0.01s;
+}
+
+
+.no-found{
+    width: 100%!important;
+    text-align: center;
+}
+
+
+.cardData{
+    display: flex;
+    align-items: center;
+}
+
+.closeToOffers{
+    display: flex;
+    justify-content: center;
+    margin-bottom:10px;
+}
