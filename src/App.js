@@ -24,7 +24,7 @@ function App() {
         return currLayer.options.icon.options.id === item.id;
       });
       currentItem[index].distance = "";
-      currentItem[index].hide =  !visibleItem 
+      currentItem[index].hide = isZoomActive ? !visibleItem : false
     });
     setAirbnbs(currentItem);
   };
@@ -78,7 +78,10 @@ function App() {
       });
     });
 
-    zoomToZone(itemsByPrice);
+
+    if(itemsByPrice?.length > 0){
+      zoomToZone(itemsByPrice);
+    }
     updateVisibleItems(item);
   };
 
