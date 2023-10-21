@@ -4,7 +4,7 @@
 }
 
 .marker-pin{
-    width: 40px;
+    width: min-content;
     min-height: 20px;
     background-color: #ea516c;
     color: white;

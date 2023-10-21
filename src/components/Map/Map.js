@@ -46,8 +46,10 @@ function Map({airbnbsMap,updateVisibleItems,getAllLayers,setMap,setIsZoomActive,
   function activateZoomToggle(e){
       setIsZoomActive(e.target.checked)
   }
-  
+
   return (
+    <>
+    {airbnbsMap?.length >  0 && 
     <MapContainer center={[43.2957547, -0.3685668 ]}  zoom={13}  whenReady={(instance) => {
       setTimeout(() => {
         visibleMarkers(instance.target,true)
@@ -88,7 +90,9 @@ function Map({airbnbsMap,updateVisibleItems,getAllLayers,setMap,setIsZoomActive,
       }
       <ManageEvents updateVisibleItems={updateVisibleItems} />
     </MapContainer>
-  );
+  }
+  </>);
+  
 }
 
 Map.propTypes = {};

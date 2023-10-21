@@ -1,4 +1,4 @@
-import React, { useRef} from 'react';
+import React, {  useRef} from 'react';
 import './Offers.css';
 import L from 'leaflet';
 import { Badge, Button, Card, Col, Form, Row } from 'react-bootstrap';
@@ -52,9 +52,10 @@ const handleSubmit = (event) =>{
   maxPrixRef.current.value = ""
 }
 
+
   return (
   <div className="Offers">
- 
+    <div> <h3 className="text-center"> Ajouter une nouvelle annonce <a href="https://nextjs-eight-xi-78.vercel.app" target="_blank">ici</a> </h3> </div>
 
     <Form className="price-search"  onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -83,7 +84,7 @@ const handleSubmit = (event) =>{
                 e.target.style.position = item.hide === true ? "fixed" : "initial"
             }}>
                 <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={`https://api.slingacademy.com/public/sample-photos/${item.id}.jpeg`} />
+                <Card.Img variant="top" src={`https://api.slingacademy.com/public/sample-photos/${index + 1}.jpeg`} />
                 <Card.Body>
                   <Card.Title>{item.title}({item.city})</Card.Title>
                   <div class="cardData">
@@ -99,7 +100,6 @@ const handleSubmit = (event) =>{
                   }
                   </Card.Text>
                   <div class="buttons">
-                    <Button variant="light" onClick={(e) => readFullText(props,item)}>{!item.all ? 'Lire la suite' : 'Moins'}</Button>
                     {item.distance && <Button variant="primary">{item.distance}</Button>}
                   </div>
                 </Card.Body>
