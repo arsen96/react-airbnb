@@ -50,7 +50,7 @@ function Map({airbnbsMap,updateVisibleItems,getAllLayers,setMap,setIsZoomActive,
   return (
     <>
     {airbnbsMap?.length >  0 && 
-    <MapContainer center={[43.2957547, -0.3685668 ]}  zoom={13}  whenReady={(instance) => {
+    <MapContainer center={[43.2957547, -0.3685668 ]}  zoom={7}  whenReady={(instance) => {
       setTimeout(() => {
         visibleMarkers(instance.target,true)
         let allLayers = [];

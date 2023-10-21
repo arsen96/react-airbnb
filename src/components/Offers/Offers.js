@@ -88,7 +88,7 @@ const handleSubmit = (event) =>{
                 <Card.Body>
                   <Card.Title>{item.title}({item.city})</Card.Title>
                   <div class="cardData">
-                    <Badge pill bg={item.price < 80  ? 'success' : item.price > 80 &&  item.price < 160 ? 'warning' : 'danger'}>
+                    <Badge pill bg={item.price < 175000  ? 'success' : item.price > 175000 &&  item.price < 230000 ? 'warning' : 'danger'}>
                     {item.price} €
                     </Badge>
                      <Button variant="light" onClick={(e) => zoomIn(item)}>Voir</Button>
