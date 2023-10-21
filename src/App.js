@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
-import records from "./assets/records.json";
 import Map from "./components/Map/Map";
 import Offers from "./components/Offers/Offers";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,12 +9,11 @@ import Fuse from "fuse.js";
 
 function App() {
   let [isZoomActive, setIsZoomActive] = useState(true);
-  let [airbnbs, setAirbnbs] = useState(records);
+  let [airbnbs, setAirbnbs] = useState([]);
   let [allLayers, setLayers] = useState([]);
   let [map, setMap] = useState();
-  const [airbnbsMap, setAirbnbsMap] = useState(
-    JSON.parse(JSON.stringify(records))
-  );
+  const [airbnbsMap, setAirbnbsMap] = useState([]);
+  // const [mapReady, setMapReady] = useState([]);
 
   const updateVisibleItems = (visibleLayers) => {
     const currentItem = [...airbnbs];
@@ -24,10 +22,35 @@ function App() {
         return currLayer.options.icon.options.id === item.id;
       });
       currentItem[index].distance = "";
-      currentItem[index].hide = isZoomActive ? !visibleItem : false
+      currentItem[index].hide = isZoomActive ? !visibleItem : false;
     });
     setAirbnbs(currentItem);
   };
+
+ 
+  useEffect(() => {
+    // declare the data fetching function
+    const fetchData = async () => {
+      return new Promise((resolve) => {
+        fetch("https://nextjs-eight-xi-78.vercel.app/api/test").then(async (res) => {
+          const data = await res.json()
+          console.log("dataa",data)
+          resolve(data)
+        });
+      })
+    }
+  
+    // call the function
+    fetchData().then((data) => {
+      data.forEach((item) => {
+        item.id = item._id;
+        delete item._id
+      })
+      console.log("data",data)
+      setAirbnbs(data);
+      setAirbnbsMap(data)
+    })
+  }, [])
 
   const zoomToZone = (itemsTargetted) => {
     let searchedItems = [];
@@ -78,31 +101,33 @@ function App() {
       });
     });
 
-
-    if(itemsByPrice?.length > 0){
+    if (itemsByPrice?.length > 0) {
       zoomToZone(itemsByPrice);
     }
     updateVisibleItems(item);
   };
 
   const getUserLocation = (coords) => {
-    const userLocation = L.latLng([coords.lat,coords.long]);
+    const userLocation = L.latLng([coords.lat, coords.long]);
     const allDistances = allLayers.map((marker) => {
-        const distance = userLocation.distanceTo(L.latLng(marker.getLatLng()));
-        return {id:marker.options.icon.options.id,distance}
-    })
+      const distance = userLocation.distanceTo(L.latLng(marker.getLatLng()));
+      return { id: marker.options.icon.options.id, distance };
+    });
 
-    const closestDistances = allDistances.sort((a,b) => {
-        return a.distance - b.distance
-    })
+    const closestDistances = allDistances.sort((a, b) => {
+      return a.distance - b.distance;
+    });
 
     const sortedAirBnbs = closestDistances.map((coord) => {
       const closerAirBnb = airbnbs.find((map) => coord.id === map.id);
-      return {...closerAirBnb,distance:`${(coord.distance / 1000).toFixed(1)} km`}
-    })
+      return {
+        ...closerAirBnb,
+        distance: `${(coord.distance / 1000).toFixed(1)} km`,
+      };
+    });
 
-    setAirbnbs(sortedAirBnbs)
-  }
+    setAirbnbs(sortedAirBnbs);
+  };
 
   const getAllLayers = (allLayers) => {
     setLayers([...allLayers]);
